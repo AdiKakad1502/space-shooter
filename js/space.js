@@ -1,19 +1,63 @@
-var jet = document.getElementById('jet');
+var jet = document.getElementById("jet");
 
-
-
-window.addEventListener('keydown',(e)=>{
-    var left = parseInt(window.getComputedStyle(jet).getPropertyValue('left'));
-    if(e.key = "ArrowLeft"){
+window.addEventListener("keydown", (e) => {
+    var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
+    if ((e.key = "ArrowLeft")) {
         jet = left - 10 + "px";
-    }
-    else if(e.key = "ArrowRight"){
+    } else if ((e.key = "ArrowRight")) {
         jet.style.left = left + 10 + "px";
     }
-} );
+    if ((e.key == "ArrowUp" || e.keyCode == 32)) {
+        var bullet = document.createElement("div");
+        bullet.classList.add("bullets");
+        board.appendChild(bullet);
 
-var generateRocks = setInterval(()=>{
-    var rock = document.createElement('div');
-    rock.classList.add('rocks');
+        var movebullet = setInterval(() => {
 
-},1500)
+            var rocks = document.getElementsByClassName("rocks"); 
+            for (var i = 0; i < rocks.length; i++) {
+                var rock = rocks[i];
+                var rockbound = rock.getBoundingClientRect();
+                var bulletbound = bullet.getBoundingClientRect();
+
+                if(bulletbound.left >= rockbound.left && bulletbound.right <= rockbound.right && bulletbound.top <= rockbound.top && bulletbound.bottom <= rockbound.bottom ){
+                    rock.parentElement.removeChild(rock);
+                }
+            }
+            var bulletbottom = parseInt(window.getComputedStyle(bullet).getPropertyValue("bottom"));
+            bullet.style.left = left + "px";
+            bullet.style.bottom = bulletbottom + 3 + "px";
+        
+        },50);
+    }
+});
+
+var generateRocks = setInterval(() => {
+    var rock = document.createElement("div");
+    rock.classList.add("rocks");
+    var rockleft = parseInt(
+        window.getComputedStyle(rock).getPropertyValue("left")
+    );
+    rock.style.left = Math.floor(Math.random() * 450) + "px";
+    board.appendChild(rock);
+}, 1500);
+
+var moverocks = setInterval(() => {
+    var rocks = document.getElementById("rocks");
+
+    if (rocks != undefined) {
+        for (var i = 0; i < rocks.length; i++) {
+            var rock = rocks[i];
+            var rocktop = parseInt(
+                window.getComputedStyle(rock).getPropertyValue("top")
+            );
+            if(rocktop >= 475){
+                alert("Game Over");
+                clearInterval(moverocks);
+                window.location.reload();
+
+            }
+            rock.style.top = rocktop + 25 + "px";
+        }
+    }
+}, 450);

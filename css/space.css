@@ -1,3 +1,11 @@
+body{
+    width: 100%;
+    overflow: hidden;
+    background: url("img/space.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 #board{
     position: absolute;
     width: 500px;
@@ -5,6 +13,7 @@
     margin: 40px auto;
     border: 2px solid white;
     background-color: black;
+    overflow: hidden;
 }
 
 #jet{
@@ -16,6 +25,16 @@
     left: 50%;
     bottom: 0px;
 
+}
+.bullets{
+    position: absolute;
+    bottom: 40px;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background: url('img/alien.png');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .rocks{
