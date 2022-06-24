@@ -22,9 +22,13 @@ window.addEventListener("keydown", (e) => {
 
                 if(bulletbound.left >= rockbound.left && bulletbound.right <= rockbound.right && bulletbound.top <= rockbound.top && bulletbound.bottom <= rockbound.bottom ){
                     rock.parentElement.removeChild(rock);
+                    document.getElementById("points").innerHTML = parseInt(document.getElementById("points").innerHTML) + 1;
                 }
             }
             var bulletbottom = parseInt(window.getComputedStyle(bullet).getPropertyValue("bottom"));
+            if(bulletbottom >= 500){
+                clearInterval(movebullet);
+            }
             bullet.style.left = left + "px";
             bullet.style.bottom = bulletbottom + 3 + "px";
         
