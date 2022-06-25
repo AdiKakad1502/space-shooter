@@ -74,7 +74,7 @@ var moverocks = setInterval(() => {
     }
 }, 450);
 
-window.addEventListener("keydown",(e)=>{
+/* window.addEventListener("keydown",(e)=>{
     var key = e.keyCode;
     if(key === 9){
         togglePause();
@@ -87,4 +87,4 @@ function togglePause(){
     else if(paused){
         paused = false;
     }
-}
+} */
